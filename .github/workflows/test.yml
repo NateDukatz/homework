@@ -31,6 +31,7 @@ jobs:
       run: mix deps.get
     - name: Start Server
       run: |
+        mix deps.get
         elixirc test/tools/util.ex 
         ./test/tools/start_server.sh &
     - name: Run Tests
