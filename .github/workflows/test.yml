@@ -30,6 +30,8 @@ jobs:
     - name: Install dependencies
       run: mix deps.get
     - name: Start Server
-      run: ./test/tools/start_server.sh &
+      run: |
+        elixirc test/tools/util.ex 
+        ./test/tools/start_server.sh &
     - name: Run Tests
       run: mix test
