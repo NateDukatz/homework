@@ -32,6 +32,8 @@ jobs:
         elixirc test/tools/util.ex 
         mix deps.get
     - name: Start Server
-      run: ./start_server.sh &
+      run: |
+        docker pull selenium/standalone-chrome
+        docker run -d -p  4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome
     - name: Run Tests
       run: mix test
