@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 13 * * 1-5"
 
 jobs:
   build:
@@ -28,10 +28,10 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
-      run: mix deps.get
-    - name: Set up Container
-      run: |
-        docker pull selenium/standalone-chrome
-        docker run -d -p  4444:4444 -v /dev/shm:/dev/shm selenium/standalone-chrome &
+      run: | 
+        elixirc test/tools/util.ex 
+        mix deps.get
+    - name: Start Server
+      run: ./start_server.sh
     - name: Run Tests
       run: mix test
