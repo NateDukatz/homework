@@ -1,4 +1,3 @@
-mix deps.get
 elixirc test/test_helper.ex
 elixirc test/tools/util.ex 
 docker pull selenium/standalone-chrome
