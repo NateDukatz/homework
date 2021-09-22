@@ -7,7 +7,7 @@ defmodule SortableTableTest do
 
   hound_session()
 
-  test "sort by label" do
+  test "sort by email" do
     navigate_to(@url)
     assert current_url() === @url
 
